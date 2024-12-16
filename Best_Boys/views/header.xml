@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <template id="A2Z-custom-header" inherit_id="website.snippet_options">
+    <xpath expr="//we-select[@data-variable='header-template']" position="inside">
+      <we-button title="Custom_Header" data-name="plantzone_header_opt"
+                 data-customize-website-views="Best_Boys.A2Z-header"
+                 data-customize-website-variable="'Custom_Header'"
+                 data-img="/website/static/src/img/snippets_options/header_template_hamburger.svg"/>
+    </xpath>
+  </template>
+
+  <template id="A2Z-header" inherit_id="website.layout" name="Template Header" active="False">
+    <xpath expr="//header" position="replace">
+      <style>
+        /* General Body Styles */
+        body {
+          font-family: 'Arial', sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: #f0f0f0;
+          color: #333;
+        }
+
+        /* Header Styles */
+        header {
+          background: linear-gradient(to right, #1e2a3a, #3b4a67); /* Original gradient background */
+          padding: 20px 40px;
+          color: white;
+          text-align: center;
+          position: sticky;
+          top: 0;
+          width: 100%;
+          z-index: 100;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Deeper shadow */
+          transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        header.scrolled {
+          background: linear-gradient(to right, #182233, #324457); /* Darker gradient on scroll */
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* More prominent shadow on scroll */
+        }
+
+        header:hover {
+          background: linear-gradient(to right, #182233, #324457); /* Darker gradient on hover */
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* More prominent shadow */
+        }
+
+        /* Navigation Styles */
+        nav {
+          margin-top: 20px;
+          min-height: 80px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding-bottom: 15px;
+          position: relative;
+        }
+
+        ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          gap: 40px;
+          transition: transform 0.3s ease-in-out;
+        }
+
+        ul li {
+          display: inline-block;
+          position: relative;
+        }
+
+        ul li a {
+          text-decoration: none;
+          color: black;
+          font-weight: bold;
+          text-transform: uppercase;
+          padding: 12px 24px;
+          display: inline-block;
+          border-radius: 8px; /* Rounded corners */
+          transition: color 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        ul li a:hover {
+          color: black; /* Light orange color */
+          transform: scale(1.1); /* Slight zoom effect */
+          background-color: #f2f4f1; /* Subtle background color on hover */
+        }
+
+        /* Mobile Menu Styles */
+        .menu-toggle {
+          display: none;
+          cursor: pointer;
+          z-index: 101;
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          transition: transform 0.3s ease;
+        }
+
+        .menu-toggle div {
+          width: 35px;
+          height: 5px;
+          background-color: white;
+          margin: 6px 0;
+          border-radius: 5px; /* Rounded bars */
+          transition: transform 0.3s ease;
+        }
+
+        .menu {
+          display: flex;
+          gap: 40px;
+        }
+
+        .menu.mobile-menu {
+          display: none;
+          flex-direction: column;
+          text-align: center;
+          width: 100%;
+        }
+
+        .menu.mobile-menu.open {
+          display: flex;
+        }
+
+        /* Mobile Menu on Click */
+        @media screen and (max-width: 768px) {
+          .menu {
+            display: none;
+            width: 100%;
+          }
+
+          .menu-toggle {
+            display: block;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 101;
+            transform: rotate(0deg);
+          }
+
+          .menu-toggle.open div:nth-child(1) {
+            transform: translateY(10px) rotate(45deg); /* Cross effect */
+          }
+
+          .menu-toggle.open div:nth-child(2) {
+            opacity: 0; /* Hide middle bar */
+          }
+
+          .menu-toggle.open div:nth-child(3) {
+            transform: translateY(-10px) rotate(-45deg); /* Cross effect */
+          }
+
+          .menu.mobile-menu.open {
+            display: flex;
+          }
+
+          ul li {
+            display: block;
+            margin: 15px 0;
+          }
+
+          ul li a {
+            padding: 15px 0;
+            font-size: 18px;
+            border-top: 1px solid #ddd;
+            transition: background-color 0.3s ease, color 0.3s ease;
+          }
+
+          ul li a:hover {
+            background-color: #1e2a3a;
+            color: #f4a261;
+          }
+        }
+
+        /* New class styles */
+        .new {
+          background: white; /* Initial background */
+          position: fixed;
+          top: 0;
+          z-index: 999;
+          width: 100%;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Deeper shadow */
+          transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        /* Color change on scroll */
+        .new.scrolled {
+          background: rgba(0, 0, 0, 0.7); /* Darker background on scroll */
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* More prominent shadow on scroll */
+        }
+
+        .new:hover {
+          background:#f2f4f1; /* Darker background on hover */
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* Deeper shadow */
+        }
+      </style>
+
+      <div class="new">
+        <nav>
+          <div class="menu-toggle" id="menu-toggle">
+          </div>
+          <ul class="menu" id="menu">
+                      <img style="height: 61px;
+  position: absolute;
+  left: 54px;
+  top: 0;" src="/Best_Boys/static/src/img/bblogo.png"/>
+
+            <li><a href="/">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#ourservices">Services</a></li>
+            <li><a href="#get-in-touch">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu');
+        const header = document.querySelector('.new');
+
+        menuToggle.addEventListener('click', () => {
+          menu.classList.toggle('mobile-menu');
+          menu.classList.toggle('open');
+          menuToggle.classList.toggle('open');
+        });
+
+        // Function to change header style on scroll
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 50) {
+
+            header.classList.add('scrolled'); // Add class when scrolled down
+          } else {
+            header.classList.remove('scrolled'); // Remove class when at the top
+          }
+        });
+      </script>
+    </xpath>
+  </template>
+</odoo>

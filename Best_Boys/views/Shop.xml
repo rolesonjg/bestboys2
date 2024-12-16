@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="product_custom_inherit" inherit_id="website_sale.product">
+        <xpath expr="//div[@id='o_wsale_cta_wrapper']" position="replace">
+            <!-- Your Custom HTML -->
+            <div id="o_wsale_cta_wrapper" class="d-flex flex-wrap align-items-center">
+                <button style="background: #1d464e;
+  padding: 5px 10px;
+  color: white;
+  font-weight: 700;
+  border: none;
+  border-radius: 15px;" class="btn_add_to_cart" data-product_id="product_id_here">
+Add to cart
+                </button>
+            </div>
+        </xpath>
+
+
+        <xpath expr="." position="inside">
+            <script type="text/javascript">
+                // Ensure jQuery is loaded
+                if (typeof $ === 'undefined') {
+                    var script = document.createElement('script');
+                    script.src = 'https://code.jquery.com/jquery-3.6.0.min.js';
+                    document.head.appendChild(script);
+                }
+
+                // Custom JavaScript to redirect to the checkout page
+                $(document).ready(function() {
+                    $('.btn_add_to_cart').on('click', function(e) {
+                        e.preventDefault(); // Prevent default action
+
+                        alert("YES"); // Alert on button click
+
+                        // Get the product ID
+                        var productId = $(this).data('product_id');
+
+                        // Add the product to the cart using AJAX (or a suitable Odoo method)
+                        $.ajax({
+                            url: '/shop/cart/update',
+                            method: 'POST',
+                            data: {
+                                'product_id': productId,
+                                'add_qty': 1
+                            },
+                            success: function(response) {
+                                // After adding the product to the cart, redirect to checkout
+                                window.location.href = '/shop/checkout';
+                            },
+                            error: function(error) {
+                                console.error("Error adding product to cart:", error);
+                            }
+                        });
+                    });
+                });
+            </script>
+        </xpath>    </template>
+</odoo>

@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<template id="home_page" name="Home Page with Products">
+        <t t-call="website.layout">
+            <section>
+<head>
+    <style  >
+        body {
+            font-family: "Poppins", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f3ed;
+            color: black;
+            scroll-behavior: smooth;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: url("/Best_Boys/static/src/img/hero-image.jpg"); /* Replace with actual image URL */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+            animation: slideInLeft 2s ease-in-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .hero h1 {
+            font-size: 35px;
+            max-width: 446px;
+            text-align: start !important;
+            margin-left: 5%;
+        }
+
+        .titleandprice {
+            min-height: 100px;
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        .titleandprice h5 {
+            min-height: 39px !important;
+            text-align: center !important;
+        }
+
+        .titleandprice p {
+            text-align: center !important;
+        }
+
+        .viewproductwrapdiv {
+            display: flex;
+            justify-content: center;
+            animation: zoomIn 1s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product-card {
+            border: none;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 30px;
+            min-height: 375px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            height: 200px !important;
+        }
+
+        .product-link {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .product-link:hover {
+            color: #007bff;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #1d464e;
+        }
+
+        .testimonial-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .contact-form {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .contact-form button {
+            background: #1d464e;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .contact-form button:hover {
+            background: #163e43;
+        }
+        /* General Styles for Get in Touch Section */
+.get-in-touch {
+  padding: 50px 0;
+  background-color: #f9f9f9;
+}
+
+.get-in-touch .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.get-in-touch h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: black;
+}
+
+.get-in-touch p {
+  text-align: center;
+  font-size: 1.1rem;
+  color: black;
+}
+
+.contact-details {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.contact-info, .contact-form {
+  width: 48%;
+}
+         .contact-form {
+        margin-top: 25px;
+  margin-bottom: 50px;
+}
+
+.contact-info h3, .contact-form h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: black;
+}
+
+.contact-info p {
+  font-size: 1.1rem;
+  color: black;
+}
+
+.contact-info a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+/* Contact Form Styles */
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: bold;
+  color: black;
+}
+
+.form-group input, .form-group textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: black;
+}
+
+.form-group textarea {
+  height: 150px;
+  resize: vertical;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #005bb5;
+}
+.row{
+            row-gap: 25px;
+
+        }
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .contact-details {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-info, .contact-form {
+    width: 100%;
+  }
+}
+/* Reset styles */
+#get-in-touch {
+  all: unset;
+  width: 100%;
+  height: auto;
+}
+
+.get-in-touch .container {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+/* Add animation for fade-in and slide-up */
+#get-in-touch {
+  animation: fadeInUp 1s ease-out forwards;
+                  background: #e9efef;
+
+}
+
+/* Keyframes for fade-in and slide-up effect */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Optional: Contact form button animation */
+button[type="submit"] {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.01);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+    </style>
+</head>
+<body>
+<section class="hero">
+    <h1 class="text-center mb-4 animate-fade-in">Shaping the Future of Homes with Craftsmanship and Care</h1>
+</section>
+</body>
+</section>
+<section id="ourservices" style="background: #e9efef;">
+    <div>
+        <h1 class="text-center pb-4 pt-5 animate-fade-in">
+            Our Services
+        </h1>
+    </div>
+    <div class="container pt-5">
+        <div class="row">
+            <!-- Loop through products -->
+            <t t-foreach="products" t-as="product">
+                <div class="col-md-3 mb-4 animate-fade-in animate-on-scroll">
+                    <div class="card product-card shadow">
+                        <!-- Ensure proper t-att-src syntax -->
+                        <img t-att-src="'/web/image/product.template/%d/image_1920' % product.id"
+                             class="card-img-top product-image" alt="Product Image" />
+                        <div class="card-body">
+                            <div class="titleandprice">
+                                <h5 class="card-title">
+                                    <!-- Proper dynamic link creation -->
+                                    <a t-att-href="'/shop/product/%d' % product.id" class="product-link">
+                                        <t t-esc="product.name" />
+                                    </a>
+                                </h5>
+                                <p class="card-text price">
+                                    <t t-esc="'%.2f' % product.list_price" />
+                                    <span t-if="product.currency_id">
+                                        <t t-esc="product.currency_id.symbol" />
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="viewproductwrapdiv">
+                                <a t-att-href="'/shop/product/%d' % product.id" style="background:#1d464e !important;border:none !important;" class="btn btn-primary">View Service</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </div>
+</section>
+<section id="about" style="background: #f5f5f5; padding: 60px 0;">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-6">
+                <h2 class="display-4 mb-3" style="font-family: 'Arial', sans-serif; color: black;">Our Aim</h2>
+                <div class="title-underline center mb-4">
+                    <span style="background-color: #007bff; width: 80px; height: 4px;"></span>
+                </div>
+                <p class="lead mb-4" style="color: black; font-size: 1.1rem; line-height: 1.6;">
+                    At Best Boys, we strive to deliver innovative and sustainable solutions that enhance everyday life. Our team is committed to turning creative ideas into impactful results.
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <img src="/Best_Boys/static/src/img/services_details01.jpg" class="img-fluid rounded shadow-lg" alt="Our Aim Image" style="max-height: 400px; object-fit: cover;"/>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="get-in-touch" class="get-in-touch">
+    <div style="background: #e9efef;  padding: 50px 0px;">
+          <div class="container">
+    <h2>Get in Touch</h2>
+    <p>If you have any questions or inquiries, feel free to reach out to us!</p>
+
+    <div class="contact-details">
+
+
+      <div class="contact-form">
+        <h3 style="  text-align: center;">Send Us a Message</h3>
+        <form id="contact-form" action="/submit" method="POST">
+          <div class="form-group">
+            <input type="text" id="name" name="name"  placeholder="Your name" />
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" name="email"  placeholder="Your email" />
+          </div>
+          <div class="form-group">
+            <textarea id="message" name="message"  placeholder="Your message"/>
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+    </div>
+</section>
+
+
+<script>
+    // Scroll Animation Script
+    document.addEventListener('DOMContentLoaded', function () {
+        const elements = document.querySelectorAll('.animate-on-scroll');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        elements.forEach(el => observer.observe(el));
+    });
+</script>
+              <script>
+       document.addEventListener('DOMContentLoaded', function() {
+     const menuToggle = document.getElementById('menu-toggle');
+     const menu = document.getElementById('menu');
+     const header = document.querySelector('.new');
+
+     menuToggle.addEventListener('click', () => {
+         menu.classList.toggle('open');
+         header.classList.toggle('active');
+     });
+ });
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                  alert("sdf")
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
+</t>
+</template>
+
+
+
+</odoo>

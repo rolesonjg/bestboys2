@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="header-rms" inherit_id="website.snippet_options">
+        <xpath expr="//we-select[@data-variable='header-template']" position="inside">
+            <we-button title="Custom_Header"
+                       data-name="rms_header_opt"
+                       data-customize-website-views="Best_Boys.rms_header_one"
+                       data-customize-website-variable="'Custom_Header'"
+                       data-img="/website/static/src/img/snippets_options/header_template_hamburger.svg"/>
+        </xpath>
+    </template>
+    <template id="footer-rms" inherit_id="website.snippet_options">
+        <xpath expr="//we-select[@data-variable='footer-template']" position="inside">
+            <we-button title="Custom_Footer"
+                       data-name="rms_footer_opt"
+                       data-customize-website-views="Best_Boys.rms_footer"
+                       data-customize-website-variable="'Custom_Footer'"
+                       data-img="/website/static/src/img/snippets_options/footer_template_links.svg"/>
+        </xpath>
+    </template>
+    <template id="rms_header_one" inherit_id="website.layout" name="Template Header RMS" active="False">
+        <xpath expr="//header" position="attributes">
+            <attribute name="t-attf-class" add="container" separator=" "/>
+        </xpath>
+        <xpath expr="//header//nav" position="replace">
+            <t t-call="website.navbar">
+                <section id="rms_header" class="w-100">
+                    <div id="top_menu_container" class="d-flex flex-row flex-wrap">
+                        <a href="/" class="navbar-brand logo mt-3">
+                            <span role="img" data-oe-xpath="/data/xpath/a/span[1]" aria-label="Logo of food"
+                                  title="" data-oe-model="website" data-oe-id="1" data-oe-field="logo"
+                                  data-oe-type="image" data-oe-expression="website.logo">
+                                <img src="/Best_Boys/static/src/img/snack/snack_pack_logo.png"
+                                     class="img img-fluid" width="95" height="40" alt="rsm" loading="lazy"
+                                     style=""/>
+                            </span>
+                        </a>
+                         <t t-set="user_info" t-value="request.env['res.users'].clear_caches()" />
+                        <ul class="nav navbar-nav navbar-expand ms-auto order-last order-lg-0">
+                        <t t-set="is_connected" t-value="not user_id._is_public()"/>
+                            <li class="nav-item dropdown ms-3 o_no_autohide_item" t-if="is_connected" style="display: flex;justify-content: center;align-items: center;">
+                                <a href="#" role="button" data-bs-toggle="dropdown" class="dropdown-toggle nav-link" style="display:flex !important; justify-content: center !important;align-items: center !important;">
+                                    <img src="/Best_Boys/static/src/img/logo_fav_icons/admin_anim.png" width="50px" class="me-2 ms-2"/>
+                                    <span t-if="user_id" class="fw-bold text-black">
+                                    <t t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                                    </span>
+                                </a>
+                                <div role="menu" class="dropdown-menu js_usermenu dropdown-menu-end position-absolute">
+                                    <a href="/web" role="menuitem" class="dropdown-item ps-3 d-none"
+                                       id="o_backend_user_dropdown_link" data-oe-model="ir.ui.view" data-oe-id="399"
+                                       data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/li[1]/div[1]/a[1]">
+                                        <i class="fa fa-fw fa-th me-1 small text-muted"></i>
+                                        Apps
+                                    </a>
+                                    <a href="/my/account" role="menuitem" class="dropdown-item ps-3" data-oe-id="417"
+                                       data-oe-xpath="/data/xpath/a" data-oe-model="ir.ui.view" data-oe-field="arch">
+                                        <i class="fa fa-fw fa-id-card-o me-1 small text-muted"></i>
+                                        My Account
+                                    </a>
+                                    <div id="o_logout_divider" class="dropdown-divider" data-oe-model="ir.ui.view"
+                                         data-oe-id="399" data-oe-field="arch"
+                                         data-oe-xpath="/t[1]/t[1]/li[1]/div[1]/div[1]"></div>
+                                    <a role="menuitem" id="o_logout" class="dropdown-item ps-3"
+                                       data-oe-model="ir.ui.view" data-oe-id="399" data-oe-field="arch"
+                                       data-oe-xpath="/t[1]/t[1]/li[1]/div[1]/a[2]"
+                                       href="/web/session/logout?redirect=/">
+                                        <i class="fa fa-fw fa-sign-out me-1 small text-muted"></i>
+                                        Logout
+                                    </a>
+                                </div>
+                        </li>
+                        <t t-else="">
+                            <li class="nav-item sign_in_rms" style="display: flex;justify-content: center;align-items: center;">
+                                <a href="/web/login" class="nav-link" style="color: #2D8F39;font-weight: 700;">Sign in</a>
+                            </li>
+                        </t>
+<!--                              <li class="nav-item">-->
+
+<!--                                  <div data-oe-id="551" data-oe-xpath="/data/xpath/div" data-oe-model="ir.ui.view"-->
+<!--                                       data-oe-field="arch" class="oe_structure oe_structure_solo ms-2">-->
+<!--                                      <section class="s_text_block" data-snippet="s_text_block" data-name="Text">-->
+<!--                                          <div class="container">-->
+<!--                                              <a href="/shop/cart" class="btn btn_cta  text-yellow-300"><i class="fa fa-fw fa-shopping-cart"/></a>-->
+<!--                                          </div>-->
+<!--                                      </section>-->
+<!--                                  </div>-->
+<!--                              </li>-->
+                        </ul>
+                    </div>
+                </section>
+            </t>
+        </xpath>
+    </template>
+    <template id="rms_footer" inherit_id="website.layout" name="Template Footer RMS" active="False">
+        <xpath expr="//footer//div[@id='footer']" position="replace">
+            <section><div style="color:red"></div></section>
+        </xpath>
+        <xpath expr="//footer//div[hasclass('o_footer_copyright')]" position="replace">
+            <section></section>
+        </xpath>
+    </template>
+    <template id="website_title_custom" inherit_id="website.layout">
+        <xpath expr="//head//title" position="replace">
+            <title>Best Boys</title>
+        </xpath>
+    </template>
+
+
+</odoo>

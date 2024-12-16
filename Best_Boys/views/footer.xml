@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="footer-two" inherit_id="website.snippet_options">
+        <xpath expr="//we-select[@data-variable='footer-template']" position="inside">
+            <we-button title="Custom_Footer"
+                       data-name="plantzone_footer_opt"
+                       data-customize-website-views="Best_Boys.A2Zdetal_footer"
+                       data-customize-website-variable="'Custom_Footer'"
+                       data-img="/website/static/src/img/snippets_options/footer_template_links.svg"/>
+        </xpath>
+    </template>
+
+    <template id="A2Zdetal_footer" inherit_id="website.layout" name="Template Footer plantzone" active="False">
+        <xpath expr="//footer//div[@id='footer']" position="replace">
+<footer id="site-footer" class="site-footer" data-oe-model="ir.ui.view" data-oe-id="1920" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/footer[1]">
+  <div class="footer-container">
+    <div class="footer-columns">
+
+       <!-- Contact -->
+      <div class="footer-column">
+          <img style="height: 61px;
+
+  left: 54px;
+  bottom: 0;" src="/Best_Boys/static/src/img/bblogo.png"/>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-column">
+        <h3 class="footer-title">Contact Us</h3>
+        <p class="footer-text">Email: <a href="mailto:info@example.com">info@example.com</a></p>
+        <p class="footer-text">Phone: <a href="tel:+1234567890">+1 234 567 890</a></p>
+      </div>
+
+      <!-- Social Links -->
+      <div class="footer-column">
+        <h3 class="footer-title">Follow Us</h3>
+        <div class="social-links">
+          <a href="https://facebook.com" target="_blank" class="social-icon facebook">Facebook</a>
+          <a href="https://twitter.com" target="_blank" class="social-icon twitter">Twitter</a>
+          <a href="https://linkedin.com" target="_blank" class="social-icon linkedin">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>2024 Your Company. All rights reserved. | <a href="#privacy-policy">Privacy Policy</a></p>
+    </div>
+  </div>
+</footer>
+
+<style>
+/* Footer Base Styles */
+.site-footer {
+      background:#f2f4f1;  color: #e0e0e0;
+  padding: 40px 0;
+  font-family: 'Arial', sans-serif;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5px;}
+
+.footer-columns {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+/* Individual Footer Column */
+.footer-column {
+  flex: 1 1 calc(33.33% - 30px);
+  min-width: 220px;
+}
+
+.footer-title {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  color: black !important;
+  font-weight: 600;
+  border-bottom: 2px solid #f7b731;
+  display: inline-block;
+  padding-bottom: 5px;
+
+}
+
+.footer-text {
+  font-size: 0.9rem;
+  line-height: 1.6;
+    color: black;
+}
+.footer-text a{
+  color:#163e43 !important;
+  }
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #e0e0e0;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #f7b731;
+}
+
+/* Social Icons */
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+
+.social-links a {
+ color:#1d464e !important;
+}
+.social-icon {
+  display: inline-block;
+  text-decoration: none;
+  color: #e0e0e0;
+  font-size: 1rem;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.social-icon:hover {
+  color: #f7b731;
+  transform: scale(1.1);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 0.85rem;
+  border-top: 1px solid #444;
+  padding-top: 15px;
+  color: #1d464e;
+}
+
+.footer-bottom a {
+  color: #1d464e !important;
+  text-decoration: none;
+}
+#bottom{
+    background-color: #f2f4f1;
+  }
+
+.footer-bottom a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Footer Styles */
+@media (max-width: 768px) {
+  .footer-columns {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-column {
+    text-align: center;
+    flex: 1 1 100%;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+}
+</style>
+        </xpath>
+    </template>
+
+</odoo>

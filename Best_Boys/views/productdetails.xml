@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+<template id="newproductdetails" inherit_id="website_sale.product">
+    <xpath expr="//div[@id='oe_structure_website_sale_product_1']" position="attributes">
+        <attribute name="style">margin-top:100px;background:#f2f4f1</attribute>
+    </xpath>
+
+</template>
+
+<template id="custom_checkout_layout" inherit_id="website_sale.checkout_layout">
+    <xpath expr="//div[contains(@class, 'oe_website_sale o_website_sale_checkout container py-2')]" position="attributes">
+        <!-- Add or modify attributes here -->
+        <attribute name="style">margin-top:100px;background:#f2f4f1</attribute>
+    </xpath>
+    <xpath expr="//div[contains(@class, 'offset-xl-1 col-lg-5 col-xl-4 order-2')]" position="attributes">
+            <!-- Modify the classes as needed -->
+        <attribute name="style">z-index:0</attribute>
+        </xpath>
+</template>
+
+
+    <template id="custom_cart_lines" inherit_id="website_sale.cart_lines">
+         <xpath expr="//div[@class='mb-0 h6 fw-bold text-end']" position="attributes">
+        <attribute name="style">color:#1d464e</attribute>
+    </xpath>
+    <xpath expr="//h6[contains(@class, 'd-inline') and contains(@class, 'align-top') and contains(@class, 'fw-bold')]" position="attributes">
+        <!-- Add or modify attributes here -->
+        <attribute name="style">color:#1d464e</attribute>
+    </xpath>
+            <xpath expr="//a[contains(@class, 'js_delete_product') and contains(@class, 'd-none') and contains(@class, 'd-md-inline-block') and contains(@class, 'small')]" position="attributes">
+              <attribute name="style">color:#1d464e</attribute>
+
+
+    </xpath>
+          <xpath expr="//a[@class='js_add_cart_json btn btn-link d-inline-block border-end-0']" position="attributes">
+              <attribute name="style">color:#1d464e</attribute>
+    </xpath>
+        <xpath expr="//a[@class='js_add_cart_json d-inline-block float_left btn btn-link border-start-0']" position="attributes">
+              <attribute name="style">color:#1d464e</attribute>
+    </xpath>
+</template>
+
+    <template id="cart_inherit" inherit_id="website_sale.cart">
+    <xpath expr="//h3[@class='mb-4']" position="attributes">
+              <attribute name="style">color:black</attribute>
+    </xpath>
+</template>
+
+<template id="step_wizard_inherit" inherit_id="website.step_wizard">
+    <xpath expr="//p[@class='o_wizard_steplabel text-center mb-0']" position="attributes">
+              <attribute name="style">color:black</attribute>
+    </xpath>
+</template>
+
+
+<template id="inherit_navigation_buttons" inherit_id="website_sale.navigation_buttons">
+    <!-- XPath to target the <a> tag you want to modify -->
+    <xpath expr="//a[@name='website_sale_main_button']" position="attributes">
+        <!-- Add/Modify classes as needed -->
+                      <attribute name="style">background:#1d464e</attribute>
+
+        <attribute name="class">btn btn-primary w-100 custom-class</attribute>
+        <!-- You can also modify other attributes, like href or add new ones -->
+        <attribute name="t-att-href">step_specific_values['main_button_href']</attribute>
+    </xpath>
+</template>
+
+
+</odoo>
